@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <h1 class="header__title">My Wine Cellar</h1>
+    <h1 class="header__title">
+      <router-link to="/">My Wine Cellar</router-link>
+    </h1>
     <div class="header__user">
       <i class="fa fa-user-circle" />
       <span>Hello Visitor!!</span>
@@ -23,7 +25,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
+.header a {
+  text-decoration: none;
   color: #fff;
 }
 
@@ -35,6 +40,7 @@ export default {
   align-items: center;
 
   font-size: 1.4rem;
+  color: #fff;
 }
 
 .header .header__user:hover {

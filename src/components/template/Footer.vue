@@ -18,12 +18,17 @@ export default {
 <style>
 .footer {
   grid-area: footer;
-  background-color: #ddd;
+  background-color: #b0a2dd;
   color: #333;
 
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 60px;
+}
+
+.footer span a {
+  text-decoration: none;
+  color: #333;
 }
 </style>
