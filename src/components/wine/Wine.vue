@@ -8,7 +8,7 @@
       <span>Country: {{wine.country}}</span>
       <span>Vineyard: {{wine.vineyard}}</span>
       <span>Year: {{wine.year}}</span>
-      <a href="#" class="button">Read More</a>
+      <router-link :to="`/wine/${wine.id}`" class="button">Read More</router-link>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   padding: 15px 0;
   border: 1px solid #ccc;
@@ -41,13 +41,19 @@ export default {
   }
 }
 
+.wine__card .wine__img {
+  width: 10%;
+}
+
 .wine__card .wine__img img {
   height: 238px;
 }
 
 .wine__card .wine__info {
+  width: 60%;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .wine__card .wine__info .button {

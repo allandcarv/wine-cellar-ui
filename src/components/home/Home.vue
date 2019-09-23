@@ -52,7 +52,7 @@ export default {
 
       this.wines = wines.data;
     },
-    async loadMore(page) {
+    async loadMore() {
       const params = {
         sort: this.sort,
         order: this.order,

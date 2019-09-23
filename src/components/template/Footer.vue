@@ -18,8 +18,9 @@ export default {
 <style>
 .footer {
   grid-area: footer;
-  background-color: #b0a2dd;
-  color: #666;
+  background-color: #7159c1;
+  opacity: 0.7;
+  color: #fff;
 
   display: flex;
   align-items: center;
@@ -29,6 +30,6 @@ export default {
 
 .footer span a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
 }
 </style>
