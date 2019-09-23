@@ -49,5 +49,7 @@ button {
     "header"
     "content"
     "footer";
+
+  background-color: #eee;
 }
 </style>
