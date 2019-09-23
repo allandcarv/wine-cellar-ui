@@ -22,16 +22,23 @@ export default {
 
 <style>
 .wine__card {
-  width: 30%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: baseline;
+  justify-content: center;
 
   padding: 15px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 992px) {
+  .wine__card {
+    width: 33%;
+    justify-content: baseline;
+  }
 }
 
 .wine__card .wine__img img {
@@ -41,7 +48,6 @@ export default {
 .wine__card .wine__info {
   display: flex;
   flex-direction: column;
-  color: #433082;
 }
 
 .wine__card .wine__info .button {
