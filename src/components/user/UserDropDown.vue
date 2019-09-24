@@ -58,6 +58,7 @@ export default {
           this.$store.commit("setUser", res.data);
           localStorage.setItem(userKey, JSON.stringify(res.data));
           this.usr = {};
+          this.isVisible = false;
         })
         .catch(err => showError(err.response.data.error));
     },
@@ -73,6 +74,10 @@ export default {
     signout() {
       localStorage.removeItem(userKey);
       this.$store.commit("setUser", null);
+      this.isVisible = false;
+      if (window.location.pathname === "/newwine") {
+        this.$router.push({ path: "/" });
+      }
     }
   }
 };
