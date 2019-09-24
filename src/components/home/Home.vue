@@ -80,7 +80,7 @@ export default {
 
 <style>
 .main {
-  width: 80%;
+  width: 100%;
 
   margin: 0 auto;
   padding: 30px;
@@ -88,6 +88,12 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   color: #433082;
+}
+
+@media (min-width: 992px) {
+  .main {
+    width: 80%;
+  }
 }
 
 .main .sort {

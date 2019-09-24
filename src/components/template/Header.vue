@@ -20,11 +20,17 @@ export default {
 .header {
   grid-area: header;
   background-color: #7159c1;
-  padding: 0 60px;
+  padding: 0 10px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (min-width: 992px) {
+  .header {
+    padding: 0 60px;
+  }
 }
 
 .header a {

@@ -1,9 +1,12 @@
 <template>
   <div class="user__dropdown" :class="{active: isVisible}">
     <div class="dropdown__user" @click="isVisible = !isVisible">
-      <i class="fa fa-user-circle" />
-      <span v-if="user">Hello {{ user.name }}</span>
-      <span v-else>Hello Visitor!!</span>
+      <i class="fa fa-bars" v-if="toggle"></i>
+      <div v-else>
+        <i class="fa fa-user-circle" />
+        <span v-if="user">Hello {{ user.name }}</span>
+        <span v-else>Hello Visitor!!</span>
+      </div>
     </div>
     <div class="dropdown__content" :class="{visible: isVisible}">
       <div v-if="!user" class="dropdown__auth">
@@ -47,7 +50,8 @@ export default {
     return {
       usr: {},
       isSignup: false,
-      isVisible: false
+      isVisible: false,
+      toggle: false
     };
   },
   methods: {
@@ -79,6 +83,9 @@ export default {
         this.$router.push({ path: "/" });
       }
     }
+  },
+  mounted() {
+    this.toggle = this.$mq === "xs" || this.$mq === "sm" ? true : false;
   }
 };
 </script>

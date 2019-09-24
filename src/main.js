@@ -5,6 +5,7 @@ import App from "./App.vue";
 import router from "./config/router";
 import store from "./config/store";
 import "./config/msg";
+import "./config/mq";
 
 Vue.config.productionTip = false;
 

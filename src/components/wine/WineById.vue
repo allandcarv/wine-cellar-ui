@@ -81,7 +81,7 @@ export default {
 
 <style>
 .main__wine {
-  width: 80%;
+  width: 100%;
 
   display: flex;
   flex-wrap: wrap;
@@ -94,6 +94,12 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   color: #433082;
+}
+
+@media (min-width: 992px) {
+  .main__wine {
+    width: 80%;
+  }
 }
 
 .main__wine .wine__image {
@@ -139,5 +145,4 @@ export default {
   border-radius: 4px;
   margin-top: 20px;
 }
-
 </style>  

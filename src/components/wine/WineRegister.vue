@@ -90,7 +90,7 @@ export default {
 
 <style>
 .register__form {
-  width: 80%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -102,6 +102,12 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   color: #433082;
+}
+
+@media (min-width: 992px) {
+  .register__form {
+    width: 80%;
+  }
 }
 
 .register__form input,
