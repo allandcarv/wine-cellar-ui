@@ -140,8 +140,4 @@ export default {
   margin-top: 20px;
 }
 
-.main__wine .add-comment {
-  width: 100%;
-  padding: 15px;
-}
 </style>  

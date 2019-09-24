@@ -1,23 +1,25 @@
 <template>
   <div class="register__form">
-    <label for="file">Wine Image</label>
-    <input type="file" id="file" ref="file" @change="handleFileUpload" />
-    <label for="name">Wine Name</label>
-    <input id="name" type="text" v-model="wine.name" placeholder="Enter Wine Name..." />
-    <label for="country">Wine Country</label>
-    <input id="country" type="text" v-model="wine.country" placeholder="Enter Wine Country..." />
-    <label for="vineyard">Wine Vineyard</label>
-    <input id="vineyard" type="text" v-model="wine.vineyard" placeholder="Enter Wine Vineyard..." />
-    <label for="year">Wine Year</label>
-    <input id="year" type="text" v-model="wine.year" placeholder="Enter Wine Year..." />
-    <label for="description">Wine Description</label>
-    <textarea
-      id="description"
-      rows="5"
-      maxlength="500"
-      v-model="wine.description"
-      placeholder="Enter Wine Description..."
-    />
+    <div class="register__inputs">
+      <label for="file">Wine Image</label>
+      <input type="file" id="file" ref="file" @change="handleFileUpload" />
+      <label for="name">Wine Name</label>
+      <input id="name" type="text" v-model="wine.name" placeholder="Enter Wine Name..." />
+      <label for="country">Wine Country</label>
+      <input id="country" type="text" v-model="wine.country" placeholder="Enter Wine Country..." />
+      <label for="vineyard">Wine Vineyard</label>
+      <input id="vineyard" type="text" v-model="wine.vineyard" placeholder="Enter Wine Vineyard..." />
+      <label for="year">Wine Year</label>
+      <input id="year" type="text" v-model="wine.year" placeholder="Enter Wine Year..." />
+      <label for="description">Wine Description</label>
+      <textarea
+        id="description"
+        rows="5"
+        maxlength="500"
+        v-model="wine.description"
+        placeholder="Enter Wine Description..."
+      />
+    </div>
     <small>{{ wine.description.length }} / 500</small>
     <div class="buttons">
       <button type="button" @click="register">Register</button>
