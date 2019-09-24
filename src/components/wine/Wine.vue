@@ -1,9 +1,11 @@
 <template>
   <div v-if="wine === 'add'" class="wine__card-add">
-    <p>
-      <i class="fa fa-plus-circle"></i>
-    </p>
-    <p>Add Wine</p>
+    <router-link to="/newwine">
+      <p>
+        <i class="fa fa-plus-circle"></i>
+      </p>
+      <p>Add Wine</p>
+    </router-link>
   </div>
   <div v-else class="wine__card">
     <div class="wine__img">
@@ -57,6 +59,11 @@ export default {
   .wine__card-add {
     width: 33%;
   }
+}
+
+.wine__card-add a {
+  text-decoration: none;
+  text-align: center;
 }
 
 .wine__card .wine__img {
