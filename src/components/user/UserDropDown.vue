@@ -94,6 +94,7 @@ export default {
 
   font-size: 1.4rem;
   color: #fff;
+  cursor: pointer;
 }
 
 .user__dropdown.active {
