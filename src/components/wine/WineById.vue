@@ -26,6 +26,7 @@
     <div class="wine__comments">
       <h2>Users Comments</h2>
       <p v-if="wine.comments.length === 0">This wine does not have comments yet</p>
+      <Comment v-for="comment in wine.comments" :key="comment.id" :comment="comment" />
     </div>
 
     <CommentRegister v-if="user" :wine="{id}" @loadWine="loadWine" />
