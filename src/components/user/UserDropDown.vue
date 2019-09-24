@@ -5,9 +5,9 @@
     <span v-else>Hello Visitor!!</span>
     <div class="dropdown__content">
       <div class="dropdown__auth">
-        <input type="text" placeholder="Enter email..." />
-        <input type="password" placeholder="Enter password..." />
-        <button type="button">Login</button>
+        <input type="email" placeholder="Enter email..." v-model="usr.email" />
+        <input type="password" placeholder="Enter password..." v-model="usr.password" />
+        <button type="button" v-on:click="signin">Login</button>
         <a href>Don't have an account? Please register...</a>
       </div>
     </div>
@@ -16,10 +16,31 @@
 
 <script>
 import { mapState } from "vuex";
+import axios from "axios";
+
+import { baseApiUrl, userKey, showError } from "../../config/global";
 
 export default {
   name: "UserDropDown",
-  computed: mapState(["user"])
+  computed: mapState(["user"]),
+  data: function() {
+    return {
+      usr: {}
+    };
+  },
+  methods: {
+    signin() {
+      axios
+        .post(`${baseApiUrl}/sessions`, this.usr)
+        .then(res => {
+          this.$store.commit("setUser", res.data);
+          localStorage.setItem(userKey, JSON.stringify(res.data));
+          this.$router.push({ path: "/" });
+          this.usr = {};
+        })
+        .catch(err => showError(err.response.data.error));
+    }
+  }
 };
 </script>
 
