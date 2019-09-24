@@ -1,5 +1,11 @@
 <template>
-  <div class="wine__card">
+  <div v-if="wine === 'add'" class="wine__card-add">
+    <p>
+      <i class="fa fa-plus-circle"></i>
+    </p>
+    <p>Add Wine</p>
+  </div>
+  <div v-else class="wine__card">
     <div class="wine__img">
       <img :src="wine.image.url" :alt="wine.name" />
     </div>
@@ -16,12 +22,13 @@
 <script>
 export default {
   name: "Wine",
-  props: { wine: Object }
+  props: ["wine"]
 };
 </script>
 
 <style>
-.wine__card {
+.wine__card,
+.wine__card-add {
   width: 100%;
   display: flex;
   align-items: center;
@@ -34,10 +41,21 @@ export default {
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
+.wine__card-add {
+  height: 275px;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2rem;
+}
+
 @media (min-width: 992px) {
   .wine__card {
     width: 33%;
     justify-content: baseline;
+  }
+
+  .wine__card-add {
+    width: 33%;
   }
 }
 

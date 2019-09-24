@@ -3,16 +3,16 @@
     <h1 class="header__title">
       <router-link to="/">My Wine Cellar</router-link>
     </h1>
-    <div class="header__user">
-      <i class="fa fa-user-circle" />
-      <span>Hello Visitor!!</span>
-    </div>
+    <UserDropDown />
   </header>
 </template>
 
 <script>
+import UserDropDown from "../user/UserDropDown";
+
 export default {
-  name: "Header"
+  name: "Header",
+  components: { UserDropDown }
 };
 </script>
 
@@ -30,24 +30,5 @@ export default {
 .header a {
   text-decoration: none;
   color: #fff;
-}
-
-.header .header__user {
-  height: 100%;
-  padding: 0 20px;
-
-  display: flex;
-  align-items: center;
-
-  font-size: 1.4rem;
-  color: #fff;
-}
-
-.header .header__user:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.header__user i {
-  margin-right: 10px;
 }
 </style>

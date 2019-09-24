@@ -9,6 +9,7 @@
     </div>
     <div class="wine__cards">
       <Wine v-for="wine in wines" :key="wine.id" :wine="wine" />
+      <Wine wine="add" />
     </div>
     <div class="load-button">
       <button type="button" v-on:click="loadMore" class="button" :disabled="this.disabled">Load More</button>
