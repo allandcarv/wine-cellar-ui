@@ -1,14 +1,32 @@
 <template>
   <div class="user__dropdown">
     <i class="fa fa-user-circle" />
-    <span v-if="user">Hello {{ user }}</span>
+    <span v-if="user">Hello {{ user.name }}</span>
     <span v-else>Hello Visitor!!</span>
     <div class="dropdown__content">
-      <div class="dropdown__auth">
+      <div v-if="!user" class="dropdown__auth">
+        <input type="text" placeholder="Enter name" v-model="usr.name" v-if="isSignup" />
         <input type="email" placeholder="Enter email..." v-model="usr.email" />
         <input type="password" placeholder="Enter password..." v-model="usr.password" />
-        <button type="button" v-on:click="signin">Login</button>
-        <a href>Don't have an account? Please register...</a>
+        <input
+          type="password"
+          placeholder="Confirm password..."
+          v-model="usr.confirmPassword"
+          v-if="isSignup"
+        />
+        <button type="button" @click="signup" v-if="isSignup">Signup</button>
+        <button type="button" @click="signin" v-else>Signin</button>
+        <a
+          @click.prevent="isSignup = !isSignup"
+          v-if="!isSignup"
+        >Don't have an account? Please signup.</a>
+        <a
+          @click.prevent="isSignup = !isSignup"
+          v-else
+        >Do you already have an account? Please signin.</a>
+      </div>
+      <div v-else class="dropdown__logout">
+        <button type="button" @click="signout">Exit</button>
       </div>
     </div>
   </div>
@@ -25,7 +43,8 @@ export default {
   computed: mapState(["user"]),
   data: function() {
     return {
-      usr: {}
+      usr: {},
+      isSignup: false
     };
   },
   methods: {
@@ -35,10 +54,22 @@ export default {
         .then(res => {
           this.$store.commit("setUser", res.data);
           localStorage.setItem(userKey, JSON.stringify(res.data));
-          this.$router.push({ path: "/" });
           this.usr = {};
         })
         .catch(err => showError(err.response.data.error));
+    },
+    signup() {
+      axios
+        .post(`${baseApiUrl}/users`, this.usr)
+        .then(() => {
+          this.$toasted.global.defaultSuccess();
+          (this.usr = {}), (this.isSignup = false);
+        })
+        .catch(err => showError(err.response.data.error));
+    },
+    signout() {
+      localStorage.removeItem(userKey);
+      this.$store.commit("setUser", null);
     }
   }
 };
@@ -47,7 +78,8 @@ export default {
 <style>
 .user__dropdown {
   height: 100%;
-  padding: 0 20px;
+  padding: 0 40px;
+  position: relative;
 
   display: flex;
   align-items: center;
@@ -67,7 +99,9 @@ export default {
 .user__dropdown .dropdown__content {
   position: absolute;
   top: 80px;
-  right: 0px;
+  right: 0;
+  width: 100%;
+
   background-color: #f9f9f9;
   min-width: 170px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -88,6 +122,12 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+}
+
+.user__dropdown .dropdown__content .dropdown__logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user__dropdown .dropdown__content .dropdown__auth a {
@@ -112,7 +152,8 @@ export default {
   border-radius: 0.25rem;
 }
 
-.user__dropdown .dropdown__content .dropdown__auth button {
+.user__dropdown .dropdown__content .dropdown__auth button,
+.user__dropdown .dropdown__content .dropdown__logout button {
   color: #fff;
   background-color: #7159c1;
   border-color: #7159c1;
@@ -126,7 +167,12 @@ export default {
   border-radius: 0.25rem;
 }
 
-.user__dropdown .dropdown__content .dropdown__auth button:hover {
+.user__dropdown .dropdown__content .dropdown__auth button:hover,
+.user__dropdown .dropdown__content .dropdown__logout button:hover {
   background-color: #573ea8;
+}
+
+.user__dropdown .dropdown__content .dropdown__logout button {
+  width: 80%;
 }
 </style>

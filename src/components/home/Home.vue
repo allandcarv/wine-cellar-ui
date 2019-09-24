@@ -9,7 +9,7 @@
     </div>
     <div class="wine__cards">
       <Wine v-for="wine in wines" :key="wine.id" :wine="wine" />
-      <Wine wine="add" />
+      <Wine v-if="user && user.admin" wine="add" />
     </div>
     <div class="load-button">
       <button type="button" v-on:click="loadMore" class="button" :disabled="this.disabled">Load More</button>
@@ -19,6 +19,7 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 
 import { baseApiUrl } from "../../config/global";
 
@@ -33,9 +34,11 @@ export default {
       sort: "",
       order: "asc",
       page: 1,
-      disabled: false
+      disabled: false,
+      showSignup: false
     };
   },
+  computed: mapState(["user"]),
   methods: {
     async loadWines(sort = "name") {
       if (sort !== this.sort) {
