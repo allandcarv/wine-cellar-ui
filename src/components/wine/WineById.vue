@@ -27,25 +27,49 @@
       <h2>Users Comments</h2>
       <p v-if="wine.comments.length === 0">This wine does not have comments yet</p>
     </div>
+
+    <CommentRegister v-if="user" :wine="{id}" @loadWine="loadWine" />
   </main>
 </template>
 
 <script>
 import axios from "axios";
-import { baseApiUrl } from "../../config/global";
+import { mapState } from "vuex";
+import { baseApiUrl, showError } from "../../config/global";
+
+import Comment from "../comment/Comment";
+import CommentRegister from "../comment/CommentRegister";
 
 export default {
   name: "WineById",
   props: ["id"],
+  components: { Comment, CommentRegister },
   data: function() {
     return {
-      wine: {}
+      wine: {
+        id: "",
+        name: "",
+        country: "",
+        vineyard: "",
+        year: "",
+        description: "",
+        image: {
+          url: "",
+          id: "",
+          path: ""
+        },
+        comments: []
+      },
+      comment: {}
     };
   },
+  computed: mapState(["user"]),
   methods: {
-    async loadWine() {
-      const wine = await axios.get(`${baseApiUrl}/wines/${this.id}`);
-      this.wine = wine.data;
+    loadWine() {
+      axios
+        .get(`${baseApiUrl}/wines/${this.id}`)
+        .then(res => (this.wine = res.data))
+        .catch(err => showError(err.reponse.data.error));
     }
   },
   mounted() {
@@ -101,5 +125,11 @@ export default {
   background-color: #eee;
   padding: 15px 30px;
   border-radius: 4px;
+  margin-top: 20px;
+}
+
+.main__wine .add-comment {
+  width: 100%;
+  padding: 15px;
 }
 </style>  
