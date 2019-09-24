@@ -97,16 +97,14 @@ export default {
 }
 
 .main__wine .wine__image {
-  width: 40%;
-}
-
-.main__wine .wine__image img {
-  height: 500px;
-  transform: rotate(15deg);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main__wine .wine__info {
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -115,6 +113,19 @@ export default {
   border-radius: 4px;
   font-size: 1.4rem;
   line-height: 1.6;
+}
+
+@media (min-width: 992px) {
+  .main__wine .wine__image {
+    width: 40%;
+  }
+  .main__wine .wine__info {
+    width: 60%;
+  }
+}
+.main__wine .wine__image img {
+  height: 500px;
+  transform: rotate(15deg);
 }
 
 .main__wine .wine__info span {
