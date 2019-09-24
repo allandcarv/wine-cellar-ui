@@ -1,7 +1,8 @@
 <template>
   <div class="user__dropdown">
     <i class="fa fa-user-circle" />
-    <span>Hello Visitor!!</span>
+    <span v-if="user">Hello {{ user }}</span>
+    <span v-else>Hello Visitor!!</span>
     <div class="dropdown__content">
       <div class="dropdown__auth">
         <input type="text" placeholder="Enter email..." />
@@ -14,8 +15,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  name: "UserDropDown"
+  name: "UserDropDown",
+  computed: mapState(["user"])
 };
 </script>
 
