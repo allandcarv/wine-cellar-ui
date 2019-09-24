@@ -8,11 +8,12 @@ Vue.use(Toasted, {
 
 Vue.toasted.register("defaultSuccess", "Success", {
   type: "success",
-  icon: "check"
+  icon: "check",
+  position: "bottom-right"
 });
 
 Vue.toasted.register(
   "defaultError",
   payload => (!payload.msg ? "Oops... Something is Wrong..." : payload.msg),
-  { type: "error", icon: "times" }
+  { type: "error", icon: "times", position: "bottom-right" }
 );
