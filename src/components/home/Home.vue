@@ -97,13 +97,16 @@ export default {
 }
 
 .main .sort {
-  padding: 15px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+
   margin-bottom: 15px;
   border-bottom: 1px solid #ccc;
 }
 
 .main .sort button {
-  margin-left: 10px;
   background-color: transparent;
   border: none;
   font-size: 1rem;
