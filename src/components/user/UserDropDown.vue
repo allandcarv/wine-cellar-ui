@@ -51,7 +51,8 @@ export default {
       usr: {},
       isSignup: false,
       isVisible: false,
-      toggle: false
+      toggle: false,
+      window: ""
     };
   },
   methods: {
@@ -82,10 +83,17 @@ export default {
       if (window.location.pathname === "/newwine") {
         this.$router.push({ path: "/" });
       }
+    },
+    handleResize() {
+      this.toggle = this.$mq === "xs" || this.$mq === "sm" ? true : false;
     }
   },
   mounted() {
-    this.toggle = this.$mq === "xs" || this.$mq === "sm" ? true : false;
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   }
 };
 </script>
