@@ -102,7 +102,6 @@ export default {
 .user__dropdown {
   height: 100%;
   padding: 0 40px;
-  position: relative;
 
   display: flex;
   align-items: center;
@@ -124,7 +123,7 @@ export default {
   position: absolute;
   top: 80px;
   right: 0;
-  width: 100%;
+  width: 80%;
 
   background-color: #f9f9f9;
   min-width: 170px;
@@ -135,6 +134,18 @@ export default {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
+}
+
+@media (min-width: 768px) {
+  .user__dropdown .dropdown__content {
+    width: 50%;
+  }
+}
+
+@media (min-width: 960px) {
+  .user__dropdown .dropdown__content {
+    width: 20%;
+  }
 }
 
 .user__dropdown .dropdown__content.visible {
